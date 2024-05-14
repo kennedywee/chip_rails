@@ -1,0 +1,20 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require "bundler/setup"
+require "chip_rails"
+
+# You can add fixtures and/or initialization code here to make experimenting
+# with your gem easier. You can also use a different console, if you like.
+
+require "dotenv"
+Dotenv.load
+
+ChipRails.configure do |config|
+  config.api_key = ENV['CHIP_API_KEY']
+  config.brand_id = ENV['CHIP_BRAND_ID']
+  config.webhook_key = ENV['CHIP_WEBHOOK_KEY']
+end
+
+require "irb"
+IRB.start(__FILE__)
