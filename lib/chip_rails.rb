@@ -6,17 +6,14 @@ require 'json'
 require 'ostruct'
 require 'openssl'
 
-require 'dotenv'
-Dotenv.load
-
 module ChipRails
   class Configuration
     attr_accessor :webhook_key, :api_key, :brand_id, :base_url
 
     def initialize
-      @webhook_key = ENV['CHIP_WEBHOOOK_KEY']
-      @api_key = ENV['CHIP_API_KEY']
-      @brand_id = ENV['CHIP_BRAND_ID']
+      @webhook_key = nil
+      @api_key = nil 
+      @brand_id = nil
       @base_url = 'https://gate.chip-in.asia/api/v1/'
     end
 
@@ -35,8 +32,8 @@ module ChipRails
     def configure
       self.configuration ||= Configuration.new
       yield(configuration)
-      configuration.validate!
       config_methods
+      configuration.validate!
     end
 
     def config_methods
