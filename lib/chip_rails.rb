@@ -19,7 +19,7 @@ class ChipRails
     configuration.validate!
   end
 
-  def make_request(method, path, _body = nil)
+  def make_request(method, path, body = nil)
     uri = URI(configuration.base_url + path)
 
     case method
